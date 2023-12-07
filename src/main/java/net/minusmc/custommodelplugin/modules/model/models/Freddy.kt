@@ -1,27 +1,25 @@
 package net.minusmc.custommodelplugin.modules.model.models
 
-import net.minusmc.custommodelplugin.modules.model.Model
 import net.minecraft.client.model.ModelRenderer
-import net.minecraft.client.model.ModelBox
-import net.minusmc.minusbounce.value.IntegerValue
 import net.minecraft.client.renderer.GlStateManager
+import net.minusmc.custommodelplugin.modules.model.Model
 
-class Freddy: Model("Freddy") {
+class Freddy: Model("Freddy", "custommodelplugin/models/freddy.png") {
 
-    var fredbody = ModelRenderer(this, 0, 0)
-    var frednose = ModelRenderer(this, 17, 67)
-    var armLeft = ModelRenderer(this)
-    var legRight = ModelRenderer(this)
-    var legLeft = ModelRenderer(this)
-    var armRight = ModelRenderer(this)
+    private var fredbody = ModelRenderer(this, 0, 0)
+    private var frednose = ModelRenderer(this, 17, 67)
+    private var armLeft = ModelRenderer(this)
+    private var legRight = ModelRenderer(this)
+    private var legLeft = ModelRenderer(this)
+    private var armRight = ModelRenderer(this)
 
-    var hat = ModelRenderer(this, 70, 24)
-    var hat2 = ModelRenderer(this, 78, 61)
-    var jaw = ModelRenderer(this, 49, 65)
-    var fredhead = ModelRenderer(this, 39, 22)
-    var legRightpad = ModelRenderer(this, 73, 33)
-    var earRight = ModelRenderer(this, 8, 0)
-    var earLeft = ModelRenderer(this, 40, 0)
+    private var hat = ModelRenderer(this, 70, 24)
+    private var hat2 = ModelRenderer(this, 78, 61)
+    private var jaw = ModelRenderer(this, 49, 65)
+    private var fredhead = ModelRenderer(this, 39, 22)
+    private var legRightpad = ModelRenderer(this, 73, 33)
+    private var earRight = ModelRenderer(this, 8, 0)
+    private var earLeft = ModelRenderer(this, 40, 0)
 
     override fun generateModel() {
         earRight = ModelRenderer(this, 8, 0)
@@ -73,7 +71,7 @@ class Freddy: Model("Freddy") {
         fredhead.addChild(earLeft)
     }
 
-    override fun renderGl(scale: Float) {
+    override fun renderGl(limbSwing: Float, limbSwingAmount: Float, netHeadYaw: Float, headPitch: Float, scale: Float) {
     	fredhead.rotateAngleX = bipedHead.rotateAngleX
         fredhead.rotateAngleY = bipedHead.rotateAngleY
         fredhead.rotateAngleZ = bipedHead.rotateAngleZ

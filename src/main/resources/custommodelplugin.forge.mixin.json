@@ -2,9 +2,13 @@
   "required": true,
   "minVersion": "0.7.11",
   "compatibilityLevel": "JAVA_8",
-  "package": "net.minusmc.custommodelpligon.injection.forge.mixins",
+  "package": "net.minusmc.custommodelplugin.injection.forge.mixins",
   "refmap": "custommodelplugin.mixins.refmap.json",
   "mixins": [
     "MixinLayerArmorBase",
+    "MixinModelPlayer",
+    "MixinRendererLivingEntity",
+    "MixinRenderPlayer",
+    "MixinLayerCape"
   ]
 }

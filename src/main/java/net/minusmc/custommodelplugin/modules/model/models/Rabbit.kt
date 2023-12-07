@@ -1,18 +1,17 @@
 package net.minusmc.custommodelplugin.modules.model.models
 
-import net.minusmc.custommodelplugin.modules.model.Model
-import net.minecraft.client.model.ModelRenderer
 import net.minecraft.client.model.ModelBox
-import net.minusmc.minusbounce.value.IntegerValue
+import net.minecraft.client.model.ModelRenderer
 import net.minecraft.client.renderer.GlStateManager
+import net.minusmc.custommodelplugin.modules.model.Model
 
-class Rabbit: Model("Rabbit") {
-    var rabbitBone = ModelRenderer(this)
-    var rabbitRleg = ModelRenderer(this)
-    var rabbitLarm = ModelRenderer(this)
-    var rabbitRarm = ModelRenderer(this)
-    var rabbitLleg = ModelRenderer(this)
-    var rabbitHead = ModelRenderer(this)
+class Rabbit: Model("Rabbit", "custommodelplugin/models/rabbit.png") {
+    private var rabbitBone = ModelRenderer(this)
+    private var rabbitRleg = ModelRenderer(this)
+    private var rabbitLarm = ModelRenderer(this)
+    private var rabbitRarm = ModelRenderer(this)
+    private var rabbitLleg = ModelRenderer(this)
+    private var rabbitHead = ModelRenderer(this)
 
     override fun generateModel() {
         rabbitBone = ModelRenderer(this)
@@ -52,7 +51,7 @@ class Rabbit: Model("Rabbit") {
         rabbitHead.cubeList.add(ModelBox(rabbitHead, 46, 0, -4.0F, -20.0F, 0.0F, 3, 9, 1, 0.0F, false))
     }
 
-    override fun renderGl(scale: Float) {
+    override fun renderGl(limbSwing: Float, limbSwingAmount: Float, netHeadYaw: Float, headPitch: Float, scale: Float) {
     	GlStateManager.pushMatrix()
         GlStateManager.scale(1.25, 1.25, 1.25)
         GlStateManager.translate(0.0, -0.3, 0.0)
