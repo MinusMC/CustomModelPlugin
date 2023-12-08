@@ -10,7 +10,7 @@ import net.minusmc.minusbounce.value.IntegerValue
 import java.awt.Color
 
 
-class AmongUs: Model("AmongUs", "custommodelplugin.models/amongus.png") {
+class AmongUs: Model("AmongUs", "custommodelplugin/models/amongus.png") {
     private val bodyColorR = IntegerValue("BodyR", 255, 0, 255)
     private val bodyColorG = IntegerValue("BodyG", 255, 0, 255)
     private val bodyColorB = IntegerValue("BodyB", 255, 0, 255)
@@ -303,32 +303,32 @@ class AmongUs: Model("AmongUs", "custommodelplugin.models/amongus.png") {
         var f = 1.0f
         if (f < 1.0f) f = 1.0f
         right_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount / f
-        this.left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 1.4f * limbSwingAmount / f
-        this.right_leg.rotateAngleY = 0.0f
-        this.left_leg.rotateAngleY = 0.0f
-        this.right_leg.rotateAngleZ = 0.0f
-        this.left_leg.rotateAngleZ = 0.0f
+        left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 1.4f * limbSwingAmount / f
+        right_leg.rotateAngleY = 0.0f
+        left_leg.rotateAngleY = 0.0f
+        right_leg.rotateAngleZ = 0.0f
+        left_leg.rotateAngleZ = 0.0f
         val bodyCustomColor: Int = Color(bodyColorR.get(), bodyColorG.get(), bodyColorB.get()).rgb
         val eyeCustomColor: Int = Color(eyeColorR.get(), eyeColorG.get(), eyeColorB.get()).rgb
         val legsCustomColor: Int = Color(legsColorR.get(), legsColorG.get(), legsColorB.get()).rgb
         if (isChild) {
             GlStateManager.scale(0.5f, 0.5f, 0.5f)
             GlStateManager.translate(0.0f, 24.0f * scale, 0.0f)
-            this.body.render(scale)
-            this.left_leg.render(scale)
-            this.right_leg.render(scale)
+            body.render(scale)
+            left_leg.render(scale)
+            right_leg.render(scale)
         } else {
             GlStateManager.translate(0.0, -0.8, 0.0)
             GlStateManager.scale(1.8, 1.6, 1.6)
             RenderUtils.color(bodyCustomColor)
             GlStateManager.translate(0.0, 0.15, 0.0)
-            this.body.render(scale)
+            body.render(scale)
             RenderUtils.color(eyeCustomColor)
-            this.eye.render(scale)
+            eye.render(scale)
             RenderUtils.color(legsCustomColor)
             GlStateManager.translate(0.0, -0.15, 0.0)
-            this.left_leg.render(scale)
-            this.right_leg.render(scale)
+            left_leg.render(scale)
+            right_leg.render(scale)
             GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f)
         }
     }

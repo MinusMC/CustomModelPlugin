@@ -1,4 +1,4 @@
-# LiquidBounceMinus-Reborn                                  
+# MinusBounce                               
 
 ### Info: [Discord](https://discord.gg/tuansocool)
 

@@ -15,7 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minusmc.custommodelplugin.modules.CustomModel;
 import net.minusmc.minusbounce.MinusBounce;
 import net.minusmc.minusbounce.event.UpdateModelEvent;
-import net.minusmc.minusbounce.features.module.modules.render.PlayerEdit;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -44,30 +43,11 @@ public class MixinModelPlayer extends ModelBiped {
     @Shadow
     public ModelRenderer bipedBodyWear;
 
-    @ModifyConstant(method = "<init>", constant = @Constant(floatValue = 2.5F))
-    private float fixAlexArmHeight(float original) {
-        return 2.0F;
-    }
 
-    /**
-     * @author asbyth
-     * @reason Resolve item positions being incorrect on Alex custommodelplugin.models (MC-72397)
-     */
-    @Overwrite
-    public void postRenderArm(float scale) {
-        if (this.smallArms) {
-            this.bipedRightArm.rotationPointX += 0.5F;
-            this.bipedRightArm.postRender(scale);
-            this.bipedRightArm.rotationPointZ -= 0.5F;
-        } else {
-            this.bipedRightArm.postRender(scale);
-        }
-    }
-
-    @Inject(method = {"render"}, at = {@At("HEAD")}, cancellable = true)
+    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     public void renderHook(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, CallbackInfo ci) {
         final CustomModel customModel = MinusBounce.moduleManager.getModule(CustomModel.class);
-        if (PlayerEdit.customModel.get() && (customModel.getOnlyMe().get() && entityIn == Minecraft.getMinecraft().thePlayer || customModel.getOnlyOther().get() && entityIn != Minecraft.getMinecraft().thePlayer) && customModel.getState()) {
+        if (customModel.getCustomModel().get() && (customModel.getOnlyMe().get() && entityIn == Minecraft.getMinecraft().thePlayer || customModel.getOnlyOther().get() && entityIn != Minecraft.getMinecraft().thePlayer) && customModel.getState()) {
             ci.cancel();
             renderCustom(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
         }
@@ -96,10 +76,5 @@ public class MixinModelPlayer extends ModelBiped {
             bipedBodyWear.render(scale);
         }
         GlStateManager.popMatrix();
-    }
-
-    @Inject(method = "setRotationAngles", at = @At("RETURN"))
-    private void revertSwordAnimation(float p_setRotationAngles_1_, float p_setRotationAngles_2_, float p_setRotationAngles_3_, float p_setRotationAngles_4_, float p_setRotationAngles_5_, float p_setRotationAngles_6_, Entity p_setRotationAngles_7_, CallbackInfo callbackInfo) {
-        MinusBounce.eventManager.callEvent(new UpdateModelEvent((EntityPlayer) p_setRotationAngles_7_,(ModelPlayer)(Object)this));
     }
 }

@@ -7,7 +7,6 @@
   "mixins": [
     "MixinLayerArmorBase",
     "MixinModelPlayer",
-    "MixinRendererLivingEntity",
     "MixinRenderPlayer",
     "MixinLayerCape"
   ]
