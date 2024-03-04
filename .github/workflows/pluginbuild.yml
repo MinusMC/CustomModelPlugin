@@ -31,5 +31,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: MinutBau-Dev
-          path: build/libs/minusbounce.zip
+          name: CustomModel-Dev
+          path: build/libs/custommodelplugin.zip
